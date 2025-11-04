@@ -2,7 +2,8 @@ import argparse
 
 import torch
 
-import utils
+from tk import logger
+import tk.utils as utils
 
 
 def parse_args():
@@ -34,9 +35,9 @@ def main():
     args = parse_args()
 
     if args.list_kernels:
-        print("Registered kernels:")
+        logger.info("Registered kernels:")
         for name in utils.get_registered_kernels():
-            print(f"- {name}")
+            logger.info(f"- {name}")
         return
 
     M, N, K = args.M, args.N, args.K
@@ -47,7 +48,7 @@ def main():
 
     kernel_func = utils.get_kernel(args.kernel)
     if kernel_func is None:
-        print(f"Kernel '{args.kernel}' not found. Use --list_kernels to see available kernels.")
+        logger.error(f"Kernel '{args.kernel}' not found. Use --list_kernels to see available kernels.")
         return
 
     kernel_func(A, B, C)
@@ -57,11 +58,11 @@ def main():
     try:
         consistent, difference = utils.check_tensor_consistency(C_ref, C, threshold=args.threshold)
         if consistent:
-            print(f"[Pass] {args.kernel} - Max difference({difference.item()}) <= Threshold ({args.threshold})!")
+            logger.info(f"[Pass] {args.kernel} - Max difference({difference.item()}) <= Threshold ({args.threshold})!")
         else:
-            print(f"[Fail] {args.kernel} - Max difference({difference.item()}) > Threshold ({args.threshold})!")
+            logger.info(f"[Fail] {args.kernel} - Max difference({difference.item()}) > Threshold ({args.threshold})!")
     except ValueError as e:
-        print(f"Verification error: {e}")
+        logger.error(f"Verification error: {e}")
 
 
 if __name__ == "__main__":

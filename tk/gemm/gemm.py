@@ -2,7 +2,7 @@ import torch
 import triton
 import triton.language as tl
 
-from utils.kernel_registry import register
+from tk.utils.kernel_registry import register
 
 
 @triton.jit

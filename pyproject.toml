@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=80.9.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tk"
+version = "0.1.0"
+description = "Personal Development For GPU Kernels"
+authors = [{ name = "noob-cod", email = "zc532693536@163.com" }]
+requires-python = ">=3.9"
+dependencies = [
+   "torch",
+   "triton>=3.0",
+]
+

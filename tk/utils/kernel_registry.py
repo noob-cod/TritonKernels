@@ -12,4 +12,7 @@ def get_registered_kernels():
 def get_kernel(name: str):
     return KERNELS.get(name, None)
 
-import gemm  # Import gemm to register its kernel
+from .. import (
+    gemm, 
+    quantization,
+)  # Register all kernels

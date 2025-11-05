@@ -36,7 +36,7 @@ def gemm_kernel(
     c_ptrs = C + offs_m[:, None] * stride_cm + offs_n[None, :] * stride_cn
     tl.store(c_ptrs, acc, mask=(offs_m[:, None] < M) & (offs_n[None, :] < N))
 
-@register("gemm")
+@register("triton-gemm")
 def gemm(A: torch.Tensor, B: torch.Tensor, C: torch.Tensor):
     M, K = A.shape
     K, N = B.shape

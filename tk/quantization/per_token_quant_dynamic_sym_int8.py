@@ -11,7 +11,7 @@ from .quant_triton_utils import t_round_to_nearest_even
 from tk.utils.kernel_registry import register
 
 
-@register("per_token_quant_dynamic_sym_int8")
+@register("triton-per_token_quant_dynamic_sym_int8")
 def per_token_quant_dynamic_sym_int8(
     tensor: torch.Tensor,
 ):

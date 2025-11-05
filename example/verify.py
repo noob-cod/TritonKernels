@@ -37,7 +37,7 @@ def main():
     if args.list_kernels:
         logger.info("Registered kernels:")
         for name in utils.get_registered_kernels():
-            logger.info(f"- {name}")
+            logger.info(f"  |- {name}")
         return
 
     M, N, K = args.M, args.N, args.K

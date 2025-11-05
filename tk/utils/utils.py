@@ -38,3 +38,27 @@ def get_torch_dtype(dtype_str: str) -> torch.dtype:
     if dtype_str not in dtype_map:
         raise ValueError(f"Unsupported dtype string: {dtype_str}")
     return dtype_map[dtype_str]
+
+def convert_torch_dtype_to_string(dtype: torch.dtype) -> str:
+    """ Convert a torch.dtype to its string representation.
+    Args:
+        dtype (torch.dtype): The torch data type.
+    Returns:
+        str: The string representation of the torch dtype.
+    Raises:
+        ValueError: If the provided torch dtype is not supported.
+    """
+    dtype_map = {
+        torch.float16: "float16",
+        torch.float32: "float32",
+        torch.float64: "float64",
+        torch.int8: "int8",
+        torch.int16: "int16",
+        torch.int32: "int32",
+        torch.int64: "int64",
+        torch.uint8: "uint8",
+        torch.bool: "bool",
+    }
+    if dtype not in dtype_map:
+        raise ValueError(f"Unsupported torch dtype: {dtype}")
+    return dtype_map[dtype]

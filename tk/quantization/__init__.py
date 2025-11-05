@@ -1,1 +1,1 @@
-from .per_token_quant_int8 import per_token_quant_dynamic_sym_int8
+from .per_token_quant_dynamic_sym_int8 import per_token_quant_dynamic_sym_int8
